@@ -5,17 +5,31 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div class="alert-box" id="alert">알림창임</div>
-    <button onclick="openAlert()">열림버튼</button>
-    <button onclick="closeAlert()">닫기버튼</button>
+    <div class="alert-box" id="alert">
+        <p id="title">알림창임</p>
+        <button id="close">닫기</button>
+    </div>
+    <button onclick="alert('block', '아이디 입력하세요');">버튼1</button>
+    <button onclick="alert('block', '비번 입력하세요');">버튼2</button>
+    
     <script>
-        function openAlert() {
-            document.getElementById('alert').style.display='block';
+        document.getElementById('close').addEventListener('click', function(){
+            document.getElementById('alert').style.display = 'none';
+        });
+        // event = [UI, 키보드, 마우스, 포커스, 폼](모르겠음 구글링)
+
+        function alert(구멍, 구멍2) {
+            document.getElementById('title').innerHTML = 구멍2;
+            document.getElementById('alert').style.display = 구멍;
+        }
+
+        /* function openAlert() {
+            document.getElementById('alert').style.display = 'block';
         }
 
         function closeAlert() {
             document.getElementById('alert').style.display='none';
-        }
+        } */
     </script>
 </body>
 </html>
