@@ -9,7 +9,8 @@
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main.css">
 </head>
-<body>
+<body class="">
+    <span class="badge bg-dark">Dark 🔄</span>
     <!-- one-way UI 애니메이션(A상태 -> B상태) -->
     <div class="black-bg">
         <div class="white-bg">
@@ -75,96 +76,28 @@
             }
         });
 
-        // 2. input안에 있는 값이 변할때 일어나는 이벤트(=change(포커스를 잃을 때))
-        document.getElementById('form-id').addEventListener('input', function(){
-            console.log('안녕');
+        // 4. Dark Mode 변경 버튼 만들기
+        var count = 0;
+
+        $('.badge').on('click', function(){
+            count++;
+            if(count % 2 == 1) {
+                $('.badge').html('Light 🔄');
+                $('body').addClass('dark');
+            } else {
+                $('.badge').html('Dark 🔄');
+                $('body').removeClass('dark');
+            }
         });
 
-        // 3. 조건식(true/false), 엄격한 비교(===), 느슨한 비교(==)
-        if(1 == '1') {
-            console.log('안녕');
-        }
+        // 5. 변수에 대해
+        // var, let, const 차이
+        // var : 재선언 가능, 재할당 가능
+        // let : 재선언 불가능(재선언 방지), 재할당 가능
+        // const : 재선언 불가능(재선언 방지), 재할당 불가능(변하면 안되는 값)
+        var 이름 = 'kim';
+        이름 = 'park';
 
-        // if/else, function 실력향상 과제
-        /*
-        Q1
-        '3의 배수에서' 박수를 치면 되는 게임을 하고 있습니다.
-        어떤 숫자를 함수 안에 집어넣으면 박수를 쳐야할 지 말아야할 지 판단해주는 함수를 만들려고 하는데
-        어떻게 함수를 만들어야할까요?
-        */
-        function Q1(n) {
-            if(n % 3 === 0) {
-                console.log('박수');
-            } else {
-                console.log('통과');
-            }
-        }
-
-        /*
-        Q2
-        Q1의 퀴즈에서 9의 배수에서는 박수를 두번 쳐야합니다.
-        */
-        function Q2(n) {
-            if(n % 9 == 0) {
-                console.log('박수X2');
-            } else if(n % 3 == 0) {
-                console.log('박수');
-            } else {
-                console.log('통과');
-            }
-        }
-
-        /*
-        Q3. 공인중개사 시험점수를 입력하면 합격인지 알려주는 함수를 만들어봅시다.
-        공인중개사 1차 시험은 개론, 민법 2개 과목이 있습니다.
-        과목마다 100점 만점이지만 두 과목 합해서 120점 이상이면 합격시켜줍니다. 
-        다만 한 과목이 40점 미만이면 과락으로 불합격됩니다.  
-        과목 점수 2개를 파라미터로 입력하면 합격인지 불합격인지 여부를 콘솔창에 출력하는 함수를 만들어보십시오. 
-        */
-        function Q3(score1, score2) {
-            if(score1 < 40 || score2 < 40) {
-                console.log('불합격');
-            } else {
-                if(score1 + score2 >= 120) {
-                    console.log('합격');
-                } else {
-                    console.log('불합격');
-                }
-            }
-        }
-
-        /*
-        Q4(응용). 원래의 369게임 룰을 적용하려면 어떻게 해야할까요?
-        3의 배수에서 박수를 치는게 아니라 끝자리가 3,6,9로 끝나는 숫자라면
-        '박수'를 출력되게 하는겁니다.
-        */
-        function Q4(num) {
-            if(num % 10 === 3 || num % 10 === 6 || num % 10 === 9 ) {
-                console.log('박수');
-            } else {
-                console.log('통과');
-            }
-        }
-
-        /*
-        Q5(응용). 합격판독기에 0에서 100사이 숫자가 아닌걸 입력하면
-        장난치지 말라고 alert를 띄우려면 어떻게 코드짜야할까요?
-        */
-        function Q5(score1, score2) {
-            if(score1 > 100 || score2 > 100) {
-                alert('장난치지마십쇼!!!!');
-            } else {
-                if(score1 < 40 || score2 < 40) {
-                    console.log('불합격');
-                } else {
-                    if(score1 + score2 >= 120) {
-                        console.log('합격');
-                    } else {
-                    console.log('불합격');
-                    }
-                }
-            }
-        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
