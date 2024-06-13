@@ -14,6 +14,7 @@
     <div class="black-bg">
         <div class="white-bg">
             <h4>로그인하세요</h4>
+            <!-- 폼 -->
             <form action="success.html">
                 <div class="my-3">
                     <input type="text" class="form-control" id="form-id">
@@ -26,25 +27,6 @@
             </form>
         </div>
     </div>
-
-    <!-- 내비게이션 바 -->
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <span class="navbar-brand">Navbar</span>
-          <button class="navbar-toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-    </nav>
-
-    <!-- list -->
-    <ul class="list-group">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-    </ul>
 
     <!-- 메인 -->
     <div class="main-bg">
@@ -79,3 +61,40 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+
+/* main.css
+.list-group {
+    display: none;
+}
+
+.black-bg {
+    width : 100%;
+    height : 100%;
+    position : fixed;
+    background : rgba(0,0,0,0.5);
+    z-index : 5;
+    padding: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s; /* 1초동안 애니메이션 변해라. */
+}
+
+.white-bg {
+    background: white;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.main-bg {
+    padding: 100px 20px;
+    background: lightgray;
+}
+
+.show-modal {
+    visibility: visible;
+    opacity: 1;
+}
+*/
