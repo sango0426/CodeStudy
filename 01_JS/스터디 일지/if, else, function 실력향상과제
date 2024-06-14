@@ -78,7 +78,7 @@
         */
         function Q5(score1, score2) {
             if(score1 > 100 || score2 > 100) {
-                alert('장난치지마십쇼!!!!');
+                alert('장난치지마십쇼');
             } else {
                 if(score1 < 40 || score2 < 40) {
                     console.log('불합격');
