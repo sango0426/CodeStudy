@@ -53,7 +53,12 @@
         <button id="login" class="btn btn-danger">로그인</button>
     </div>
 
+    <div class="alert alert-danger">
+        <span id="num">5</span>초 이내 구매시 사은품 증정!
+    </div>
+
     <script>
+        /*
         $('#login').on('click', function(){
             $('.black-bg').addClass('show-modal');
         });
@@ -98,24 +103,33 @@
         var 이름 = 'kim';
         이름 = 'park';
 
-        // Q1. 변수를 만들어봅시다
-        // 내 나이와 출신지역을 자바스크립트 변수에 저장해봅시다. 
-        // 나이는 맨날 변하니 재할당가능한 변수,
-        // 출신지역은 바뀌지 않으니 재할당불가능한 변수에 저장해보십시오.
+        // 6. setTimeout(n초뒤 실행)
+        setTimeout(function(){
+            $('.alert').hide();
+        }, 3000);
 
-        // Q2. 왜 이 변수는 동작하지 않죠? 
+        // 7. setInterval(n초 마다)
+        setInterval(function(){
+            console.log('안녕');
+        }, 1000);
 
-        // var name = 'park';
-        // var id = 0;
-        // function showName(){
-        //     var name = 'kim';
-        //     var id = 1;
-        //     console.log(name);
-        // }
-        // showName();
-        // console.log(id);
-        // 다음 코드를 실행했을 때 콘솔창에 무엇이 출력될까요?
+        // 8. vs Web Browser API 사용법
+        setTimeout(함수, 1000);
+        function 함수() {
+            console.log('안녕');
+        }
+        */
 
+        // 24.06.16 숙제
+        var count = 5;
+        setInterval(function(){
+            count--;
+            if(count >= 0) {
+                document.querySelector('#num').innerHTML = count;
+            } else {
+                $('.alert').hide();
+            }
+        }, 1000);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
