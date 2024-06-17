@@ -10,7 +10,24 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body class="">
+    <!-- 모드 변경 -->
     <span class="badge bg-dark">Dark 🔄</span>
+    <script>
+        // Dark Mode 변경 버튼 만들기
+        var count = 0;
+        $('.badge').on('click', function(){
+            count++;
+            if(count % 2 == 1) {
+                $('.badge').html('Light 🔄');
+                $('body').addClass('dark');
+            } else {
+                $('.badge').html('Dark 🔄');
+                $('body').removeClass('dark');
+            }
+        });
+    </script>
+
+
     <!-- one-way UI 애니메이션(A상태 -> B상태) -->
     <div class="black-bg">
         <div class="white-bg">
@@ -27,47 +44,8 @@
             </form>
         </div>
     </div>
-
-    <!-- 내비게이션 바 -->
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <span class="navbar-brand">Navbar</span>
-          <button class="navbar-toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-    </nav>
-
-    <!-- list -->
-    <ul class="list-group">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-    </ul>
-
-    <!-- 메인 -->
-    <div class="main-bg">
-        <h4>Shirts on Sale</h4>
-        <button id="login" class="btn btn-danger">로그인</button>
-    </div>
-
-    <div class="alert alert-danger">
-        <span id="num">5</span>초 이내 구매시 사은품 증정!
-    </div>
-
     <script>
-
-        $('#login').on('click', function(){
-            $('.black-bg').addClass('show-modal');
-        });
-
-        $('#close').on('click', function(){
-            $('.black-bg').removeClass('show-modal');
-        });
-
-        // 1. 전송 버튼을 누를때 input에 입력한 값이 공백이면 alert 띄우기
+        // 전송 버튼을 누를때 input에 입력한 값이 공백이면 alert 띄우기
         $('form').on('submit', function(e){
             var userEmail = document.getElementById('form-id').value;
             var userPw = document.getElementById('form-pw').value;
@@ -91,47 +69,53 @@
                 e.preventDefault();
             }
         });
+    </script>
 
-        // 4. Dark Mode 변경 버튼 만들기
-        var count = 0;
 
-        $('.badge').on('click', function(){
-            count++;
-            if(count % 2 == 1) {
-                $('.badge').html('Light 🔄');
-                $('body').addClass('dark');
-            } else {
-                $('.badge').html('Dark 🔄');
-                $('body').removeClass('dark');
-            }
+    <!-- 내비게이션 바 -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-brand">Navbar</span>
+          <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
+
+
+    <!-- list -->
+    <ul class="list-group">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+    </ul>
+
+
+    <!-- 메인 -->
+    <div class="main-bg">
+        <h4>Shirts on Sale</h4>
+        <button id="login" class="btn btn-danger">로그인</button>
+    </div>
+    <script>
+        $('#login').on('click', function(){
+            $('.black-bg').addClass('show-modal');
         });
 
-        // 5. 변수에 대해
-        // var, let, const 차이
-        // var : 재선언 가능, 재할당 가능
-        // let : 재선언 불가능(재선언 방지), 재할당 가능
-        // const : 재선언 불가능(재선언 방지), 재할당 불가능(변하면 안되는 값)
-        var 이름 = 'kim';
-        이름 = 'park';
+        $('#close').on('click', function(){
+            $('.black-bg').removeClass('show-modal');
+        });
+    </script>
 
-        // 6. setTimeout(n초뒤 실행)
-        setTimeout(function(){
-            $('.alert').hide();
-        }, 3000);
 
-        // 7. setInterval(n초 마다)
-        setInterval(function(){
-            console.log('안녕');
-        }, 1000);
-
-        // 8. vs Web Browser API 사용법
-        setTimeout(함수, 1000);
-        function 함수() {
-            console.log('안녕');
-        }
-
-        // 24.06.16 숙제
-        var count = 5;
+    <!-- setTimeout, setInterval -->
+    <div class="alert alert-danger">
+        <span id="num">5</span>초 이내 구매시 사은품 증정!
+    </div>
+    <script>
+         // 24.06.16 숙제
+         var count = 5;
         setInterval(function(){
             count--;
             if(count >= 0) {
@@ -141,6 +125,59 @@
             }
         }, 1000);
     </script>
+
+    <!-- 캐러셀 -->
+    <div style="overflow: hidden">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="car1.png">
+            </div>
+            <div class="slide-box">
+                <img src="car2.png">
+            </div>
+            <div class="slide-box">
+                <img src="car3.png">
+            </div>
+        </div>
+    </div>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="slide-next">다음</button>
+    <button class="slide-prev">이전</button>
+
+    <script>
+        var nowImg = 1;
+
+        $('.slide-1').on('click', function(){
+            $('.slide-container').css('transform','translateX(0vw)');
+        });
+
+        $('.slide-2').on('click', function(){
+            $('.slide-container').css('transform','translateX(-100vw)');
+        });
+
+        $('.slide-3').on('click', function(){
+            $('.slide-container').css('transform','translateX(-200vw)');
+        });
+
+        $('.slide-next').on('click', function(){ 
+            $('.slide-container').css('transform','translateX(-' + nowImg + '00vw)');
+            nowImg++;
+        });
+
+        $('.slide-prev').on('click', function(){
+            if(nowImg == 3) {
+                $('.slide-container').css('transform','translateX(-100vw)');
+                nowImg--;
+            } else if(nowImg == 2) {
+                $('.slide-container').css('transform','translateX(0vw)');
+                nowImg--;
+            }
+            
+        });
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

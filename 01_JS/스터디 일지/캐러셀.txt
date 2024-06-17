@@ -1,0 +1,51 @@
+<!-- 캐러셀 -->
+    <div style="overflow: hidden">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="car1.png">
+            </div>
+            <div class="slide-box">
+                <img src="car2.png">
+            </div>
+            <div class="slide-box">
+                <img src="car3.png">
+            </div>
+        </div>
+    </div>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="slide-next">다음</button>
+    <button class="slide-prev">이전</button>
+
+    <script>
+        var nowImg = 1;
+
+        $('.slide-1').on('click', function(){
+            $('.slide-container').css('transform','translateX(0vw)');
+        });
+
+        $('.slide-2').on('click', function(){
+            $('.slide-container').css('transform','translateX(-100vw)');
+        });
+
+        $('.slide-3').on('click', function(){
+            $('.slide-container').css('transform','translateX(-200vw)');
+        });
+
+        $('.slide-next').on('click', function(){ 
+            $('.slide-container').css('transform','translateX(-' + nowImg + '00vw)');
+            nowImg++;
+        });
+
+        $('.slide-prev').on('click', function(){
+            if(nowImg == 3) {
+                $('.slide-container').css('transform','translateX(-100vw)');
+                nowImg--;
+            } else if(nowImg == 2) {
+                $('.slide-container').css('transform','translateX(0vw)');
+                nowImg--;
+            }
+            
+        });
+    </script>
