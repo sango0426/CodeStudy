@@ -58,7 +58,7 @@
     </div>
 
     <script>
-        /*
+
         $('#login').on('click', function(){
             $('.black-bg').addClass('show-modal');
         });
@@ -69,6 +69,8 @@
 
         // 1. 전송 버튼을 누를때 input에 입력한 값이 공백이면 alert 띄우기
         $('form').on('submit', function(e){
+            var userEmail = document.getElementById('form-id').value;
+            var userPw = document.getElementById('form-pw').value;
             if(document.getElementById('form-id').value == '' && document.getElementById('form-pw').value == '') {
                 alert('아이디와 비밀번호를 입력해주세요.');
                 e.preventDefault();
@@ -77,6 +79,15 @@
                 e.preventDefault();
             } else if(document.getElementById('form-pw').value == '') {
                 alert('비밀번호를 입력해주세요.');
+                e.preventDefault();
+            }
+
+            if(/\S+@\S+\.\S+/.test(userEmail) == false) {
+                alert('이메일형식이 아닙니다.');
+                e.preventDefault();
+            }
+            if(/[A-Z]/.test(userPw) == false) {
+                alert('비밀번호에 대문자가 없습니다.');
                 e.preventDefault();
             }
         });
@@ -118,7 +129,6 @@
         function 함수() {
             console.log('안녕');
         }
-        */
 
         // 24.06.16 숙제
         var count = 5;
