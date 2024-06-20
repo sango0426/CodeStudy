@@ -42,6 +42,7 @@ function App() {
 
       <div className="list">
         <h4 onClick={()=>{
+          // 제목을 다시 클릭하면 모달창 다시 숨기기
           modal == true ? setModal(false) : setModal(true)
         }}>{ title[2] }</h4>
         <p>2월 17일 발행</p>
