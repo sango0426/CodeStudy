@@ -6,12 +6,8 @@ import { useState } from 'react';
 function App() {
   let post = "강남 우동 맛집";
   let [title, title2] = useState(['남자 코트 추천', '강남 우동맛집', '리액트 독학']);
-  let [like, like2] = useState(0);
+  let [like, setLike] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
-
-  function 함수() {
-    console.log(1);
-  }
 
   return (
     <div className="App">
@@ -24,7 +20,7 @@ function App() {
         title2(copy);
       }}>가나다순 정렬</button>
 
-      <div className="list">
+      {/* <div className="list">
         <h4>{ title[0] } <span onClick={()=>{ like2(like + 1); } }>👍</span> { like } </h4>
         <p>2월 17일 발행</p>
         <button onClick={()=>{
@@ -36,18 +32,36 @@ function App() {
       </div>
 
       <div className="list">
-        <h4>{ title[1] }</h4>
-        <p>2월 17일 발행</p>
-      </div>
-
-      <div className="list">
         <h4 onClick={()=>{
           // 제목을 다시 클릭하면 모달창 다시 숨기기
           modal == true ? setModal(false) : setModal(true)
         }}>{ title[2] }</h4>
         <p>2월 17일 발행</p>
-      </div>
+      </div> */}
 
+      {
+        // 같은 html 반복생성하는 법(실제 블로그 글 갯수 만큼 html 생성)
+        title.map(function(a, i){
+          return (
+            <div className="list" key={i}>
+              <br></br>
+              <h4 style={ {'display' : 'inline'} } onClick={()=>{
+                setModal(true)
+                // 제목을 다시 클릭하면 모달창 다시 숨기기
+                modal == true ? setModal(false) : setModal(true)
+              }}>
+                { title[i] }
+              </h4>
+              <span onClick={()=>{
+                let copy = [...like];
+                copy[i] = copy[i] + 1;
+                setLike(copy);
+                } }>👍</span> { like[i] }
+              <p>2월 17일 발행</p>
+            </div>
+          )
+        })
+      }
       {
         /* 조건식 ? 참일때 실행할 코드 : 거짓일 때 실행할 코드 */
         modal == true ? <Modal/> : null
