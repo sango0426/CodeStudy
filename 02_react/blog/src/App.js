@@ -65,19 +65,21 @@ function App() {
       }
       {
         /* 조건식 ? 참일때 실행할 코드 : 거짓일 때 실행할 코드 */
-        modal == true ? <Modal/> : null
+        modal == true ? <Modal title={ title }/> : null
       }
 
     </div>
   );
 }
 
-function Modal(){
+function Modal(props){
   return(
     <div className="modal">
-        <h4>제목</h4>
+        <h4>{ props.title[0] }</h4>
         <p>날짜</p>
         <p>상세내용</p>
+        /* 프롭스로 */
+        <button>글수정</button>
     </div>
   );
 }
@@ -85,6 +87,6 @@ function Modal(){
 /* [동적인 UI 만드는 3 step]
 1. html css로 미리 디자인 완성
 2. UI의 현재 상태를 state로 저장
-3. statedp 따라 UI가 어떻게 동작할지 코딩 */
+3. state에 따라 UI가 어떻게 동작할지 코딩 */
 
 export default App;
