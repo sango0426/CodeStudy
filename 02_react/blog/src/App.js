@@ -114,4 +114,17 @@ function Modal(props){
 e.stopPropagation();
 */
 
+/* class를 이용한 옛날 React 문법
+class Modal2 extends React.Component {
+  constructor() {
+    super()
+  }
+  render() {
+    return(
+      <div>안녕</div>
+    )
+  }
+}
+*/
+
 export default App;
