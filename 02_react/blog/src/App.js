@@ -5,9 +5,11 @@ import { useState } from 'react';
 
 function App() {
   let post = "강남 우동 맛집";
-  let [title, title2] = useState(['남자 코트 추천', '강남 우동맛집', '리액트 독학']);
+  let [title, setTitle] = useState(['남자 코트 추천', '강남 우동맛집', '리액트 독학']);
   let [like, setLike] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+  let [modalTitle, setModalTitle] = useState(0);
+  let [inputValue, setInputValue] = useState('');
 
   return (
     <div className="App">
@@ -46,28 +48,44 @@ function App() {
             <div className="list" key={i}>
               <br></br>
               <h4 style={ {'display' : 'inline'} } onClick={()=>{
-                setModal(true)
+                setModal(true);
+                setModalTitle(i);
                 // 제목을 다시 클릭하면 모달창 다시 숨기기
                 modal == true ? setModal(false) : setModal(true)
               }}>
                 { title[i] }
-              </h4>
-              // 따봉 누를때마다 좋아요 수 글마다 따로 증가
-              <span onClick={()=>{
+                <span onClick={(e)=>{
+                  e.stopPropagation();
                 let copy = [...like];
                 copy[i] = copy[i] + 1;
                 setLike(copy);
                 } }>👍</span> { like[i] }
+              </h4>
               <p>2월 17일 발행</p>
+              <button onClick={()=>{
+                let deleteTitle = [...title];
+                deleteTitle.splice(i,1)
+                setTitle(deleteTitle);
+              }}>글삭제</button>
             </div>
+            
           )
         })
       }
+
+      <input onChange={(e)=>{
+        setInputValue(e.target.value);
+      }}></input>
+      <button onClick={()=>{
+        let addTitle = [...title];
+        addTitle.unshift(inputValue);
+        setTitle(addTitle);
+      }}>작성</button>
+
       {
         /* 조건식 ? 참일때 실행할 코드 : 거짓일 때 실행할 코드 */
-        modal == true ? <Modal title={ title }/> : null
+        modal == true ? <Modal title={ title } modalTitle = {modalTitle}/> : null
       }
-
     </div>
   );
 }
@@ -75,10 +93,9 @@ function App() {
 function Modal(props){
   return(
     <div className="modal">
-        <h4>{ props.title[0] }</h4>
+        <h4>{ props.title[props.modalTitle] }</h4>
         <p>날짜</p>
         <p>상세내용</p>
-        /* 프롭스로 */
         <button>글수정</button>
     </div>
   );
@@ -88,5 +105,13 @@ function Modal(props){
 1. html css로 미리 디자인 완성
 2. UI의 현재 상태를 state로 저장
 3. state에 따라 UI가 어떻게 동작할지 코딩 */
+
+/* <input> 입력한 값 가져오는법
+(e)=>{ e.target.value }
+*/
+
+/* 상위 html로 퍼지는 이벤트버블링을 막고 싶으면
+e.stopPropagation();
+*/
 
 export default App;
