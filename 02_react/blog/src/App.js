@@ -52,6 +52,7 @@ function App() {
               }}>
                 { title[i] }
               </h4>
+              // 따봉 누를때마다 좋아요 수 글마다 따로 증가
               <span onClick={()=>{
                 let copy = [...like];
                 copy[i] = copy[i] + 1;
