@@ -1,6 +1,7 @@
 import data from '../data.js'
 import { useState } from 'react';
 import { Col } from 'react-bootstrap';
+import { Outlet } from 'react-router-dom';
 
 
 // 상품 리스트 페이지
@@ -56,17 +57,17 @@ function Detail(props){
 function Cart(){
     return(
         <div className="container">
-            <div className="row">
-                <div className="col-md-6">
-                    <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-                </div>
-                <div className="col-md-6">
-                    <h4 className="pt-5">상품명</h4>
-                    <p>상품설명</p>
-                    <p>120000원</p>
-                    <button className="btn btn-danger">주문하기</button> 
-                </div>
-            </div>
+            장바구니 페이지임
+        </div> 
+    );
+}
+
+// 이벤트 페이지
+function Event(){
+    return(
+        <div className="container">
+            <h4>오늘의 이벤트</h4>
+            <Outlet></Outlet>
         </div> 
     );
 }
@@ -77,6 +78,7 @@ function About(){
     return(
         <div>
             <h4>회사 정보임</h4>
+            <Outlet></Outlet>
         </div> 
     );
 }
@@ -96,4 +98,4 @@ function Error(){
     );
 }
 
-export {Product, Detail, Cart, About, Error}
+export {Product, Detail, Cart, About, Error, Event}
