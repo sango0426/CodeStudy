@@ -22,7 +22,7 @@ function Product(){
 
     return(
         <div style={ { 'display' : 'flex', 'flexDirection' : 'column', 'alignItems' : 'center' } }>
-            <div style={ { 'display' : 'flex', 'flexDirection' : 'row'} }>
+            <div style={ { 'display' : 'flex', 'flexDirection' : 'row', 'width' : '100%'} }>
                 {
                     shoes.map((a, i)=>{
                         return (
@@ -32,7 +32,6 @@ function Product(){
                                     <h4>{ shoes[i].title }</h4>
                                     <p>{ shoes[i].price }</p>
                                 </Col>
-                                
                             </>
                         );
                     })
