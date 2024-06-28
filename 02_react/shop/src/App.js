@@ -1,7 +1,7 @@
-import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
+import { Navbar, Container, Nav, Row } from 'react-bootstrap';
 import './App.css';
 import { Product, Detail, Cart, About, Error, Event} from './pages/pages.js'
-import { Routes, Route, useNavigate, Outlet } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 function App() {
   let navigate = useNavigate();

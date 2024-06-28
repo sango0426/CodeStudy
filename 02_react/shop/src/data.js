@@ -1,4 +1,4 @@
-let data = [
+let data = ([
     {
       id : 0,
       title : "White and Black",
@@ -17,6 +17,6 @@ let data = [
       content : "Born in the States",
       price : 130000
     }
-]
+])
 
 export default data;
