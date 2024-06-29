@@ -1,9 +1,20 @@
-import { Navbar, Container, Nav, Row } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import './App.css';
-import { Product, Detail, Cart, About, Error, Event} from './pages/pages.js'
+import { Detail, Cart, About, Error, Event} from './pages/pages.js'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useState } from 'react';
+import data from './data.js'
+import styled from 'styled-components';
+
+let YellowBtn = styled.button`
+    background : ${ props => props.bg };
+    padding : 5px;
+    border-radius : 10px;
+`
 
 function App() {
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -25,11 +36,23 @@ function App() {
         <Route path="/" element={ 
           <>
             <div className="main-bg"></div>
-            <Container className="container">
-              <Row className="row">
-                <Product></Product>
-              </Row>
-            </Container>
+            <div className="container">
+              <div className="row">
+                {
+                  shoes.map((a, i)=>{
+                    return <Product shoes={shoes[i]} i={i} key={i}></Product>
+                  })
+                }
+              </div>
+            </div>
+            <YellowBtn bg="aqua" style={ { 'width' : '120px' } } onClick={ ()=>{
+                axios.get('https://codingapple1.github.io/shop/data2.json').then((result)=>{ 
+                    setShoes([...data, ...result.data]);
+                    console.log(shoes);
+                }).catch(()=>{
+                    console.log('실패함');
+                })
+            } }>상품 더보기</YellowBtn>
           </>
         } />
 
@@ -51,6 +74,17 @@ function App() {
 
       </Routes>   
     </div>
+  );
+}
+
+// 상품 리스트 컴포넌트
+function Product(props){
+  return(
+      <div className="col-md-4">
+          <img src={ 'https://codingapple1.github.io/shop/shoes'+ (props.i+1) +'.jpg' } width="80%"/>
+          <h4>{ props.shoes.title }</h4>
+          <p>{ props.shoes.price }</p>
+      </div>
   );
 }
 

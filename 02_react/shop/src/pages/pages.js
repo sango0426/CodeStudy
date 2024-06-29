@@ -1,63 +1,15 @@
-import data from '../data.js'
-import { useEffect, useState } from 'react';
-import { Col } from 'react-bootstrap';
 import { Outlet, useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import axios from 'axios'
-
-let YellowBtn = styled.button`
-    background : ${ props => props.bg };
-    padding : 5px;
-    border-radius : 10px;
-`
-
-// 상품 리스트 페이지
-function Product(){
-    let [shoes, setShoes] = useState(data);
-    let [shoesImage] = useState([
-    'https://codingapple1.github.io/shop/shoes1.jpg', 
-    'https://codingapple1.github.io/shop/shoes2.jpg',
-    'https://codingapple1.github.io/shop/shoes3.jpg'
-    ]);
-
-    return(
-        <div style={ { 'display' : 'flex', 'flexDirection' : 'column', 'alignItems' : 'center' } }>
-            <div style={ { 'display' : 'flex', 'flexDirection' : 'row', 'width' : '100%'} }>
-                {
-                    shoes.map((a, i)=>{
-                        return (
-                            <>
-                                <Col key={i} style={ { 'justifyContent' : 'spaceBetween'} }>
-                                    <img src={ shoesImage[i] } width="80%"/>
-                                    <h4>{ shoes[i].title }</h4>
-                                    <p>{ shoes[i].price }</p>
-                                </Col>
-                            </>
-                        );
-                    })
-                }
-            </div>
-            <YellowBtn bg="aqua" style={ { 'width' : '120px' } } onClick={ ()=>{
-                axios.get('https://codingapple1.github.io/shop/data2.json').then((result)=>{ 
-                    setShoes([...data, ...result.data]);
-                    console.log(shoes);
-                }).catch(()=>{
-                    console.log('실패함');
-                })
-            } }>상품 더보기</YellowBtn>
-        </div>
-    );
-}
-
+import { useState, useEffect } from 'react';
+import data from '../App.js';
 
 // 상세정보 페이지
-function Detail(props){
-    let [shoes] = useState(data);
-    let Image1 = 'https://codingapple1.github.io/shop/shoes1.jpg';
-    let Image2 = 'https://codingapple1.github.io/shop/shoes2.jpg';
-    let Image3 = 'https://codingapple1.github.io/shop/shoes3.jpg';
-    let [shoesImage] = useState([Image1, Image2, Image3]);
-    let [count, setCount] = useState(0);
+function Detail(){
+    let [shoes, setShoes] = useState(data);
+    let [shoesImage] = useState([
+        'https://codingapple1.github.io/shop/shoes1.jpg',
+        'https://codingapple1.github.io/shop/shoes2.jpg',
+        'https://codingapple1.github.io/shop/shoes3.jpg'
+    ]);
     let {id} = useParams();
     let [num, setNum] = useState('');
 
@@ -79,7 +31,6 @@ function Detail(props){
 
     return(
         <div className="container">
-            <YellowBtn onClick={ ()=>{ setCount(count+1) } } bg="blue" padding="20px">버튼</YellowBtn> { count }
             <div className="row">
                 <div className="col-md-6">
                     <img src={ shoesImage[id] } width="100%" />
@@ -143,4 +94,4 @@ function Error(){
     );
 }
 
-export {Product, Detail, Cart, About, Error, Event}
+export { Detail, Cart, About, Error, Event }
