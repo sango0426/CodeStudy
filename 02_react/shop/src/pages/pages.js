@@ -47,14 +47,14 @@ function Detail(props){
             </div>
             <Nav variant="tabs" defaultActiveKey="/home">
                 <Nav.Item>
-                  <Nav.Link href="/home">Active</Nav.Link>
+                  <Nav.Link href="/home">버튼0</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="link-1">Option 2</Nav.Link>
+                  <Nav.Link eventKey="link-1">버튼1</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="disabled" disabled>
-                    Disabled
+                  버튼2
                   </Nav.Link>
                 </Nav.Item>
             </Nav>
