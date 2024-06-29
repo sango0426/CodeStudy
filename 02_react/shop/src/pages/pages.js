@@ -1,10 +1,9 @@
 import { Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import data from '../App.js';
+import Nav from 'react-bootstrap/Nav';
 
 // 상세정보 페이지
-function Detail(){
-    let [shoes, setShoes] = useState(data);
+function Detail(props){
     let [shoesImage] = useState([
         'https://codingapple1.github.io/shop/shoes1.jpg',
         'https://codingapple1.github.io/shop/shoes2.jpg',
@@ -13,9 +12,10 @@ function Detail(){
     let {id} = useParams();
     let [num, setNum] = useState('');
 
-    let findProduct = shoes.find(function(x) {
+    let findProduct = props.shoes.find(function(x) {
         return x.id == id;
     });
+    id = parseInt(id, 10);
 
     // 어려운 연산, 서버 데이터 바인딩, 타이머 장착(재렌더링마다 코드 실행하고 싶으면)
     useEffect(()=>{
@@ -33,7 +33,7 @@ function Detail(){
         <div className="container">
             <div className="row">
                 <div className="col-md-6">
-                    <img src={ shoesImage[id] } width="100%" />
+                    <img src={ "https://codingapple1.github.io/shop/shoes" + (findProduct.id+1) +".jpg" } width="100%" />
                 </div>
                 <div className="col-md-6">
                     <input placeholder="수량 입력란" onChange={ (e)=>{ 
@@ -45,6 +45,19 @@ function Detail(){
                     <button className="btn btn-danger">주문하기</button> 
                 </div>
             </div>
+            <Nav variant="tabs" defaultActiveKey="/home">
+                <Nav.Item>
+                  <Nav.Link href="/home">Active</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="link-1">Option 2</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="disabled" disabled>
+                    Disabled
+                  </Nav.Link>
+                </Nav.Item>
+            </Nav>
         </div> 
     );
 }
