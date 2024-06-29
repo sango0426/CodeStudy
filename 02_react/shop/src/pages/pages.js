@@ -4,17 +4,10 @@ import Nav from 'react-bootstrap/Nav';
 
 // 상세정보 페이지
 function Detail(props){
-    let [shoesImage] = useState([
-        'https://codingapple1.github.io/shop/shoes1.jpg',
-        'https://codingapple1.github.io/shop/shoes2.jpg',
-        'https://codingapple1.github.io/shop/shoes3.jpg'
-    ]);
-    let {id} = useParams();
     let [num, setNum] = useState('');
-
-    let findProduct = props.shoes.find(function(x) {
-        return x.id == id;
-    });
+    let [tab, setTab] = useState(0);
+    let {id} = useParams();
+    let findProduct = props.shoes.find(x => x.id == id);
     id = parseInt(id, 10);
 
     // 어려운 연산, 서버 데이터 바인딩, 타이머 장착(재렌더링마다 코드 실행하고 싶으면)
@@ -45,21 +38,43 @@ function Detail(props){
                     <button className="btn btn-danger">주문하기</button> 
                 </div>
             </div>
-            <Nav variant="tabs" defaultActiveKey="/home">
+            <Nav variant="tabs" defaultActiveKey="link0">
                 <Nav.Item>
-                  <Nav.Link href="/home">버튼0</Nav.Link>
+                  <Nav.Link onClick={ ()=>{ setTab(0); } } eventKey="link0">버튼0</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="link-1">버튼1</Nav.Link>
+                  <Nav.Link onClick={ ()=>{ setTab(1); } }eventKey="link1">버튼1</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="disabled" disabled>
-                  버튼2
-                  </Nav.Link>
+                  <Nav.Link onClick={ ()=>{ setTab(2); } }eventKey="link2">버튼2</Nav.Link>
                 </Nav.Item>
             </Nav>
+            <TabContent tab={tab}/>
+            
+            
         </div> 
     );
+}
+
+function TabContent({tab}){
+    let [fade, setFade] = useState('');
+
+    useEffect(()=>{
+        let timer = setTimeout(()=>{ setFade('end'); }, 100);
+        
+        return ()=>{
+            clearTimeout(timer);
+            setFade('');
+        }
+    }, [tab]);
+
+    return (
+        <div className={'start ' + fade}>
+            {
+                [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]
+            }
+        </div>
+    )
 }
 
 // 장바구니 페이지

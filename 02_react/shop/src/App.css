@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
 .nav-title {
   font-size: 30px;
   padding-right: 35px;
