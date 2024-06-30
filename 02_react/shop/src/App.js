@@ -3,10 +3,13 @@ import './App.css';
 import { Detail, Cart, About, Error, Event} from './pages/pages.js'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import data from './data.js'
 import styled from 'styled-components';
 import loading from './images/loading.png';
+
+// state 보관함
+export let Context1 = createContext();
 
 let YellowBtn = styled.button`
     background : ${ props => props.bg };
@@ -18,6 +21,7 @@ function App() {
   let [shoes, setShoes] = useState(data);
   let [count, setCount] = useState(2);
   let [image, setImage] = useState(false);
+  let [재고] = useState([10, 11, 12]);
   let navigate = useNavigate();
 
   return (
@@ -96,7 +100,13 @@ function App() {
           <Route path="two" element={ <div>생일기념 쿠폰 받기</div> } />
         </Route>
         
-        <Route path="/detail/:id" element={ <Detail shoes={ shoes }/> } />
+        <Route path="/detail/:id" element={
+          <Context1.Provider value={{ 재고 }}>
+            <Detail shoes={ shoes }/>
+          </Context1.Provider>
+          
+          
+        } />
         
         <Route path="/about" element={ <About /> }>
           <Route path="member" element={ <About /> } />

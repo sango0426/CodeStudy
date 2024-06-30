@@ -1,9 +1,13 @@
 import { Outlet, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Nav from 'react-bootstrap/Nav';
+import {Context1} from './../App.js'
+
 
 // 상세정보 페이지
 function Detail(props){
+    let { 재고 } = useContext(Context1);
+
     let [num, setNum] = useState('');
     let [tab, setTab] = useState(0);
     let {id} = useParams();
