@@ -1,18 +1,20 @@
-import { Outlet, useParams } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useDispatch} from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
-import {Context1} from './../App.js'
+import { addItem } from './../store/cartSlice.js'
+
 
 
 // 상세정보 페이지
 function Detail(props){
-    let { 재고 } = useContext(Context1);
-
     let [num, setNum] = useState('');
     let [tab, setTab] = useState(0);
     let {id} = useParams();
     let findProduct = props.shoes.find(x => x.id == id);
     id = parseInt(id, 10);
+    let dispatch = useDispatch();
+    
 
     // 어려운 연산, 서버 데이터 바인딩, 타이머 장착(재렌더링마다 코드 실행하고 싶으면)
     useEffect(()=>{
@@ -39,7 +41,9 @@ function Detail(props){
                     <h4 className="pt-5">{ findProduct.title }</h4>
                     <p>{ findProduct.content }</p>
                     <p>{ findProduct.price }원</p>
-                    <button className="btn btn-danger">주문하기</button> 
+                    <button onClick={()=>{
+                        dispatch(addItem({id : findProduct.id, name : findProduct.title, count : 1}));
+                    }} className="btn btn-danger">주문하기</button> 
                 </div>
             </div>
             <Nav variant="tabs" defaultActiveKey="link0">
@@ -81,49 +85,4 @@ function TabContent({tab}){
     )
 }
 
-// 장바구니 페이지
-function Cart(){
-    return(
-        <div className="container">
-            장바구니 페이지임
-        </div> 
-    );
-}
-
-// 이벤트 페이지
-function Event(){
-    return(
-        <div className="container">
-            <h4>오늘의 이벤트</h4>
-            <Outlet></Outlet>
-        </div> 
-    );
-}
-
-
-// About 페이지
-function About(){
-    return(
-        <div>
-            <h4>회사 정보임</h4>
-            <Outlet></Outlet>
-        </div> 
-    );
-}
-
-
-// 404 페이지
-function Error(){
-    return(
-        <div className="container">
-            <div className="col-md-6">
-                <h4>404 Error</h4>
-            </div>
-            <div className="col-md-6">
-                <h2 className="pt-5">없는 페이지입니다.</h2>
-            </div>
-        </div> 
-    );
-}
-
-export { Detail, Cart, About, Error, Event }
+export default Detail;

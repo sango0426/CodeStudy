@@ -1,6 +1,10 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import './App.css';
-import { Detail, Cart, About, Error, Event} from './pages/pages.js'
+import Detail from './pages/Detail.js'
+import Cart from './pages/Cart.js'
+import About from './pages/About.js'
+import Error from './pages/Error.js'
+import Event from './pages/Event.js'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { createContext, useState } from 'react';
