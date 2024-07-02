@@ -12,10 +12,21 @@ let cartProduct = createSlice({
             state[번호].count++;
         },
         addItem(state, action){
-            state.push(action.payload);
+            // 중복 체크(요거 물어보자)
+            let checkItem = state.findIndex((a)=> { return a.id == action.payload.id });
+
+            if(checkItem === -1){
+                state.push(action.payload);
+            } else {
+                state[checkItem].count++;
+            }
+        },
+        removeItem(state, action){
+            let id = state.findIndex((a)=> a.id == action.payload );
+            state.splice(id, 1);
         }
     }
 });
-export let { changeCount, addItem } = cartProduct.actions;
+export let { changeCount, addItem, removeItem } = cartProduct.actions;
 
 export default cartProduct;
