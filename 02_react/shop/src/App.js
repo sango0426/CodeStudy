@@ -41,8 +41,6 @@ function App() {
         </Container>
       </Navbar>
 
-
-
       <Routes>
         <Route path="/" element={ 
           <>
