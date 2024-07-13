@@ -6,7 +6,7 @@ function Error(){
                 <h4>404 Error</h4>
             </div>
             <div className="col-md-6">
-                <h2 className="pt-5">없는 페이지입니다.</h2>
+                <h2 className="pt-5">404 Error : 없는 페이지입니다.</h2>
             </div>
         </div> 
     );
