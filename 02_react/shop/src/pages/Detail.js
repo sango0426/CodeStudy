@@ -35,7 +35,7 @@ function Detail(props){
                     <img src={ "https://codingapple1.github.io/shop/shoes" + (findProduct.id+1) +".jpg" } width="100%" />
                 </div>
                 <div className="col-md-6">
-                    <input placeholder="수량 입력란" onChange={ (e)=>{ 
+                    <input placeholder="수량 입력" onChange={ (e)=>{ 
                         setNum(e.target.value)
                      } }></input>
                     <h4 className="pt-5">{ findProduct.title }</h4>
