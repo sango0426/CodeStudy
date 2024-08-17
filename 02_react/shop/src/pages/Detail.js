@@ -43,7 +43,7 @@ function Detail(props){
                     <p>{ findProduct.price }원</p>
                     <button onClick={()=>{
                         dispatch(addItem({id : findProduct.id, name : findProduct.title, count : 1}));
-                    }} className="btn btn-danger">주문하긔</button>
+                    }} className="btn btn-danger">주문</button>
                 </div>
             </div>
             <Nav variant="tabs" defaultActiveKey="link0">
